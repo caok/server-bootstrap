@@ -4,7 +4,7 @@ echo "-----Start bootstrap for production-----"
 sudo apt-get update
 sudo apt-get -y install git-core curl vim openssl libtool bison imagemagick autoconf libncurses5-dev\
   build-essential libc6-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev libssl-dev libyaml-dev\
-  exuberant-ctags libsqlite3-dev sqlite3 tmux
+  exuberant-ctags libsqlite3-dev sqlite3 tmux libffi-dev
 
 echo "-----Install nodejs-----"
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.16.0/install.sh | bash
