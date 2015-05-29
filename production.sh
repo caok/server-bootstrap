@@ -11,8 +11,7 @@ sudo add-apt-repository ppa:chris-lea/node.js
 sudo apt-get update
 sudo apt-get -y install nodejs
 
-echo "-----Install NGINX-----"
-echo "Well you need to install mysql?(Y/N) (default: N) __"
+echo "Well you need to install Nginx?(Y/N) (default: N) __"
 read dorm
 dorm=${dorm:=N}
 if [ $dorm = Y ]; then
