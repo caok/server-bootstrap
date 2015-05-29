@@ -1,10 +1,5 @@
 #!/bin/bash
 
-function re_source {
-  xdotool type 'source ~/.bashrc'
-  xdotool key Return
-}
-
 echo "-----Start bootstrap for production-----"
 sudo apt-get update
 sudo apt-get -y install git-core curl vim openssl libtool bison imagemagick autoconf libncurses5-dev\
@@ -17,22 +12,34 @@ sudo apt-get update
 sudo apt-get -y install nodejs
 
 echo "-----Install NGINX-----"
-sudo apt-get -y install nginx
-sudo service nginx start
+echo "Well you need to install mysql?(Y/N) (default: N) __"
+read dorm
+dorm=${dorm:=N}
+if [ $dorm = Y ]; then
+  sudo apt-get -y install nginx
+  sudo service nginx start
+fi
 
 echo "-----Install Database-----"
-echo "Well you need to install mysql?(Y/N) (default: N) __"
+echo "Well you need to install mysql-server?(Y/N) (default: N) __"
 read dorm
 dorm=${dorm:=N}
 if [ $dorm = Y ]; then
   sudo apt-get -y install mysql-server libmysqlclient-dev
 fi
 
-echo "Well you need to install postgresql?(Y/N) (default: N) __"
+echo "Well you need to install postgresql-server?(Y/N) (default: N) __"
 read dorm
 dorm=${dorm:=N}
 if [ $dorm = Y ]; then
   sudo apt-get -y install postgresql libpq-dev
+fi
+
+echo "Well you need to install postgresql-client?(Y/N) (default: N) __"
+read dorm
+dorm=${dorm:=N}
+if [ $dorm = Y ]; then
+  sudo apt-get -y install postgresql-client libpq-dev
 fi
 
 echo "-----Install ruby by rbenv-----"
@@ -42,7 +49,6 @@ git clone git://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbe
 git clone https://github.com/rkh/rbenv-update.git ~/.rbenv/plugins/rbenv-update
 printf 'export PATH="$HOME/.rbenv/bin:$PATH"\n' >> ~/.bashrc
 printf 'eval "$(rbenv init - --no-rehash)"\n' >> ~/.bashrc
-re_source
 
 ruby_version="$(curl -sSL https://raw.githubusercontent.com/Techbay/server-bootstrap/master/versions/ruby)"
 printf "Installing Ruby $ruby_version ..."
