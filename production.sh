@@ -3,7 +3,8 @@
 echo "-----Start bootstrap for production-----"
 sudo apt-get update
 sudo apt-get -y install git-core curl vim openssl libtool bison imagemagick autoconf libncurses5-dev\
-  build-essential libc6-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev libssl-dev libyaml-dev libffi-dev
+  build-essential libc6-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev libssl-dev libyaml-dev libffi-dev\
+  libxml2-dev libxslt-dev libmagickwand-dev libpcre3-dev
 
 echo "-----Install nodejs-----"
 sudo apt-get -y install python-software-properties python g++ make
@@ -39,6 +40,21 @@ read dorm
 dorm=${dorm:=N}
 if [ $dorm = Y ]; then
   sudo apt-get -y install postgresql-client libpq-dev
+fi
+
+echo "-----Install Others-----"
+echo "Well you need the gem of curb?(Y/N) (default: N) __"
+read dorm
+dorm=${dorm:=N}
+if [ $dorm = Y ]; then
+  sudo apt-get -y install libcurl3 libcurl3-gnutls libcurl4-openssl-dev
+fi
+
+echo "Well you need the phantomjs?(Y/N) (default: N) __"
+read dorm
+dorm=${dorm:=N}
+if [ $dorm = Y ]; then
+  sudo apt-get -y install phamtomjs
 fi
 
 echo "-----Install ruby by rbenv-----"
