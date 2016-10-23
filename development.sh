@@ -36,16 +36,17 @@ echo "Changing your shell to zsh ..."
 chsh -s $(which zsh)
 
 echo "-----Install ruby by rbenv-----"
-git clone git://github.com/sstephenson/rbenv.git ~/.rbenv
-git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-git clone git://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+git clone https://github.com/rbenv/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
 git clone https://github.com/rkh/rbenv-update.git ~/.rbenv/plugins/rbenv-update
 printf 'export PATH="$HOME/.rbenv/bin:$PATH"\n' >> ~/.zshrc
 printf 'eval "$(rbenv init - --no-rehash)"\n' >> ~/.zshrc
 source ~/.zshrc
+~/.rbenv/bin/rbenv init
 
 ruby_version="$(curl -sSL https://raw.githubusercontent.com/Techbay/server-bootstrap/master/versions/ruby)"
-printf "Installing Ruby $ruby_version ..."
+printf "Installing Ruby $ruby_version ...\n"
 rbenv install -s "$ruby_version"
 rbenv global "$ruby_version"
 rbenv rehash
@@ -53,3 +54,10 @@ rbenv rehash
 gem update --system
 gem install bundler rake --no-document
 rbenv rehash
+
+echo "Well you need the reboot your system?(Y/N) (default: N) __"
+read dorm
+dorm=${dorm:=N}
+if [ $dorm = Y ]; then
+  sudo reboot
+fi
