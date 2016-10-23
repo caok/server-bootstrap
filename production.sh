@@ -67,7 +67,7 @@ printf 'eval "$(rbenv init - --no-rehash)"\n' >> ~/.bashrc
 source ~/.bashrc
 ~/.rbenv/bin/rbenv init
 
-ruby_version="$(curl -sSL https://raw.githubusercontent.com/Techbay/server-bootstrap/master/versions/ruby)"
+ruby_version="$(curl -sSL https://raw.githubusercontent.com/caok/server-bootstrap/master/versions/ruby)"
 printf "Installing Ruby $ruby_version ...\n"
 rbenv install -s "$ruby_version"
 rbenv global "$ruby_version"

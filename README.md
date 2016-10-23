@@ -2,10 +2,10 @@
 
 #### Production
 ```
-bash <(wget -O- https://raw.githubusercontent.com/Techbay/server-bootstrap/master/production.sh)
+bash <(wget -O- https://raw.githubusercontent.com/caok/server-bootstrap/master/production.sh)
 ```
 
 #### Development
 ```
-bash <(wget -O- https://raw.githubusercontent.com/Techbay/server-bootstrap/master/development.sh)
+bash <(wget -O- https://raw.githubusercontent.com/caok/server-bootstrap/master/development.sh)
 ```
