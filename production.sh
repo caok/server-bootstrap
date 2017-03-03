@@ -57,6 +57,15 @@ if [ $dorm = Y ]; then
   sudo apt-get -y install phamtomjs
 fi
 
+echo "Well you need the ntpdate and sync time?(Y/N) (default: N) __"
+read dorm
+dorm=${dorm:=N}
+if [ $dorm = Y ]; then
+  sudo apt-get install ntpdate
+  sudo ntpdate us.pool.ntp.org
+  sudo hwclock --systohc
+fi
+
 echo "-----Install ruby by rbenv-----"
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
