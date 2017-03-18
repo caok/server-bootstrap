@@ -61,7 +61,7 @@ echo "Well you need the ntpdate and sync time?(Y/N) (default: N) __"
 read dorm
 dorm=${dorm:=N}
 if [ $dorm = Y ]; then
-  sudo apt-get install ntpdate
+  sudo apt-get install ntpdate ntp
   sudo ntpdate us.pool.ntp.org
   sudo hwclock --systohc
 fi
